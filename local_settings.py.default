@@ -1,0 +1,13 @@
+PROJECT_NAME = "Status"
+MACHINES = {
+    "machine1": {
+        "name": "Machine #1",
+        "address": "server.com",
+        "services": [
+            {
+                "name": "Service #1",
+                "address": "service1.server.com",
+            },
+        ],
+    },
+}

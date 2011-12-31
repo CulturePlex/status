@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ PROJECT_NAME }}</title>
+    <meta name="description" content="Monitor for all the services provided by CulturePlex servers">
+    <meta name="author" content="CulturePlex Lab">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../css/style.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../img/favicon.ico">
+<!--    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">-->
+<!--    <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">-->
+<!--    <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">-->
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">{{ PROJECT_NAME }}</a>
+
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="/update">Update</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        {% if final_status %}
+        <h1>Everything is OK</h1>
+        {% else %}
+        <h1>We found some services not reachable</h1>
+        {% endif %}
+<!--        <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>-->
+        <p><a class="btn primary large" href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Learn more &raquo;</a></p>
+
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span11">
+          {% for service in services %}
+          <h2>{{ service.name }}</h2>
+          <p>Reaching <a href="{{ service.address }}">{{ service.address }}</a>:
+          {% if service.status == 200 %}
+          <span class="label success">{{ service.status }}</span>.
+          {% elif service.status == 500 %}
+          <span class="label important">{{ service.status }}</span>.
+          {% elif service.status == -1 %}
+          <span class="label">TIME OUT.</span>.
+          {% else %}
+          <span class="label warning">{{ service.status }}</span>.
+          {% endif %}
+          </p>
+<!--          <p><a class="btn" href="#">View details &raquo;</a></p>-->
+          {% endfor %}
+        </div>
+        <div class="span5">
+
+          <h2>About</h2>
+          <p>{{ PROJECT_NAME }} is a service for providing information about the status of several services hosted at home.</p>
+          <p><a class="btn" href="http://github.com/CulturePlex/status">More info &raquo;</a></p>
+
+          <h2>{{ PROJECT_NAME }}</h2>
+          <p>For further information, please, visit the official website..</p>
+          <p><a class="btn" href="{{ PROJECT_URL }}">Website &raquo;</a></p>
+        </div>
+      </div>
+
+      <footer>
+        <p>{{ CURRENT_DATE.year }} &copy; {{ PROJECT_NAME }}</p>
+
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
+
