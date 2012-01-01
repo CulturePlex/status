@@ -63,9 +63,9 @@
           <h2>{{ service.name }}</h2>
           <p>Reaching <a href="{{ service.address }}">{{ service.address }}</a>:
           {% if service.status == 200 %}
-          <span class="label success">{{ service.status }}</span>.
+          <span class="label success">{{ service.status }} OK</span>.
           {% elif service.status == 500 %}
-          <span class="label important">{{ service.status }}</span>.
+          <span class="label important">{{ service.status }} ERROR</span>.
           {% elif service.status == -1 %}
           <span class="label">TIME OUT.</span>.
           {% else %}
